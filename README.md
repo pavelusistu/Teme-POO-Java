@@ -1,14 +1,13 @@
 Obiecte:
 
-persoana,
-catalog,
-student,
-profesor,
-asistent,
-materie,
-nota,
-grupa,
-serie
+Persoana,
+Catalog,
+Student,
+Profesor,
+Materie,
+Nota,
+Grupa,
+Serie
 
 Actiuni/Interogari:
 
