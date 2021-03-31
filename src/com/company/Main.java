@@ -51,13 +51,13 @@ public class Main {
             System.out.println("Promovat");
         else
             System.out.println("Corigent");
-        //System.out.println(Catalog.getInstance().get_student("Mantu"));
+        //System.out.println(CatalogService.getInstance().get_student("Mantu"));
         Serie serie=new Serie(25);
         serie.adauga_grupa(new Grupa(2,5,1)).adauga_grupa(new Grupa(2,5,2)).adauga_grupa(new Grupa(2,5,3)).adauga_grupa(new Grupa(2,5,4));
         CatalogService.getInstance().get_profesor("Fojica").adauga_serie(serie);
         CatalogService.getInstance().get_profesor("Fojica").get_serie(25).get_grupa(2).adauga_student(CatalogService.getInstance().get_student("Luca")).adauga_student(CatalogService.getInstance().get_student("Stamate"));
         System.out.println(CatalogService.getInstance().get_profesor("Fojica").get_serie(25).get_grupa(2));
         System.out.println(CatalogService.getInstance().get_student("Luca"));
-        //System.out.println(Catalog.getInstance().getStudenti());
+        //System.out.println(CatalogService.getInstance().getStudenti());
     }
 }
