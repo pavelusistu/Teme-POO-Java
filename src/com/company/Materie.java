@@ -8,6 +8,7 @@ public class Materie
     private int puncte_credit;
     private Profesor profesor;
     private ArrayList<Nota> note;
+    private int ID;
     public Materie()
     {
         this.profesor=new Profesor();
@@ -26,7 +27,6 @@ public class Materie
         return "Materie{" +
                 "denumire='" + denumire + '\'' +
                 ", puncte_credit=" + puncte_credit +
-                ", profesor=" + profesor +
                 '}';
     }
 
@@ -66,4 +66,30 @@ public class Materie
     public ArrayList<Nota> getNote() {
         return note;
     }
+
+    public void setDenumire(String denumire) {
+        this.denumire = denumire;
+    }
+
+    public void setPuncte_credit(int puncte_credit) {
+        this.puncte_credit = puncte_credit;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    public void setNote(ArrayList<Nota> note) {
+        this.note = note;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+
 }

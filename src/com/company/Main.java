@@ -1,6 +1,9 @@
 package com.company;
 
+import com.sun.org.apache.xml.internal.resolver.Catalog;
+
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         ArrayList<Profesor> profesori= Cititor.getInstance().read("A:\\tema\\src\\com\\company\\Profesor.csv");
         for (Profesor p:profesori)
         {
@@ -19,20 +22,35 @@ public class Main {
         {
             CatalogService.getInstance().adauga_student(s);
         }
+        NoteDAO noteDAO = new NoteDAO();
+        noteDAO.delete_all();
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.delete_all();
+        MateriiDAO materieDAO = new MateriiDAO();
+        materieDAO.delete_all();
+        GrupaDAO grupaDAO = new GrupaDAO();
+        grupaDAO.delete_all();
+
         ArrayList<Materie> materii= Cititor.getInstance().read("A:\\tema\\src\\com\\company\\Materie.csv");
+        int j=101;
+
         for (Materie m:materii)
         {
             CatalogService.getInstance().get_student("Luca").adauga_materie(m);
+
         }
         materii= Cititor.getInstance().read("A:\\tema\\src\\com\\company\\Materie.csv");
         for (Materie m:materii)
         {
             CatalogService.getInstance().get_student("Stamate").adauga_materie(m);
+
         }
         materii= Cititor.getInstance().read("A:\\tema\\src\\com\\company\\Materie.csv");
         for (Materie m:materii)
         {
             CatalogService.getInstance().get_student("Mantu").adauga_materie(m);
+            m.setID(j++);
+            materieDAO.add(m);
         }
 
         CatalogService.getInstance().get_student("Luca").get_materie("matematica")
@@ -102,9 +120,13 @@ public class Main {
         Serie serie=new Serie(25);
         //serie.adauga_grupa(new Grupa(2,5,1)).adauga_grupa(new Grupa(2,5,2)).adauga_grupa(new Grupa(2,5,3)).adauga_grupa(new Grupa(2,5,4));
         ArrayList<Grupa> grupe= Cititor.getInstance().read("A:\\tema\\src\\com\\company\\Grupa.csv");
+
+        int i=51;
         for (Grupa g:grupe)
         {
             serie.adauga_grupa(g);
+            g.setID(i++);
+            grupaDAO.add(g);
         }
         CatalogService.getInstance().get_profesor("Fojica").adauga_serie(serie);
         CatalogService.getInstance().get_profesor("Fojica").get_serie(25).get_grupa(2).adauga_student(CatalogService.getInstance().get_student("Luca")).adauga_student(CatalogService.getInstance().get_student("Stamate"));
@@ -112,7 +134,46 @@ public class Main {
         /*System.out.println(CatalogService.getInstance().get_student("Luca"));
         System.out.println(CatalogService.getInstance().get_student("Stamate"));
         System.out.println(CatalogService.getInstance().get_student("Mantu"));
-        System.out.println(CatalogService.getInstance().get_student("Stoica"));
         System.out.println(CatalogService.getInstance().getStudenti());*/
+
+        studentDAO.add(CatalogService.getInstance().get_student("Stamate"), 51);
+        studentDAO.add(CatalogService.getInstance().get_student("Luca"), 52);
+        studentDAO.add(CatalogService.getInstance().get_student("Mantu"), 53);
+
+
+        CatalogService.getInstance().get_student(3).setVarsta(21);
+        studentDAO.update(CatalogService.getInstance().get_student(3));
+        //studentDAO.delete(2);
+        System.out.println(studentDAO.getStudent(2));
+        for (Student s:studentDAO.getStudents())
+        {
+            System.out.println(s);
+        }
+        //System.out.println(grupaDAO.getGrupa(53));
+        for (Grupa g:grupaDAO.getGrupe())
+        {
+            System.out.println(g);
+        }
+        grupe.get(1).setAn(2);
+        grupaDAO.update(grupe.get(1));
+        System.out.println(materieDAO.getMaterie(101));
+        for (Materie m:materieDAO.getMaterii())
+        {
+            System.out.println(m);
+        }
+        materii.get(1).setDenumire("istorie");
+        materieDAO.update(materii.get(1));
+
+
+        int k=151;
+        noteDAO.add(new Nota(10, k++), 1, 101);
+        noteDAO.add(new Nota(9, k++), 1, 102);
+        noteDAO.add(new Nota(8, k++), 2, 101);
+        noteDAO.add(new Nota(9, k++), 2, 103);
+        noteDAO.add(new Nota(7, k++), 3, 103);
+        noteDAO.add(new Nota(5, k++), 3, 102);
+
+        System.out.println(noteDAO.getNote());
+        noteDAO.update(new Nota(10, 156));
     }
 }

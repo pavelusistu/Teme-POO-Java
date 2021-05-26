@@ -11,6 +11,7 @@ class Grupa
     private int serie;
     private int ordine;
     private TreeSet<Student> studenti;
+    private int ID;
     public Grupa()
     {
 
@@ -25,7 +26,7 @@ class Grupa
 
     @Override
     public String toString() {
-        return "Grupa: " + an + serie + ordine + "\n" + "Studenti: " + studenti;
+        return "Grupa: " + an + serie + ordine + "\n" ;
     }
     public Grupa adauga_student(Student student)
     {
@@ -47,6 +48,29 @@ class Grupa
 
     public TreeSet<Student> getStudenti() {
         return studenti;
+    }
+    public int getID() {
+        return ID;
+    }
+
+    public void setAn(int an) {
+        this.an = an;
+    }
+
+    public void setSerie(int serie) {
+        this.serie = serie;
+    }
+
+    public void setOrdine(int ordine) {
+        this.ordine = ordine;
+    }
+
+    public void setStudenti(TreeSet<Student> studenti) {
+        this.studenti = studenti;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
 

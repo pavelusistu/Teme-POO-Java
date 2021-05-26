@@ -3,6 +3,7 @@ package com.company;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class Persoana implements Comparable<Persoana>
 {
@@ -19,6 +20,22 @@ public class Persoana implements Comparable<Persoana>
         this.nume = nume;
         this.prenume = prenume;
         this.varsta = varsta;
+        this.sex = sex;
+    }
+
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
+    }
+
+    public void setVarsta(int varsta) {
+        this.varsta = varsta;
+    }
+
+    public void setSex(char sex) {
         this.sex = sex;
     }
 
@@ -56,14 +73,20 @@ public class Persoana implements Comparable<Persoana>
 class Student extends Persoana
 {
     private ArrayList<Materie> materii;
+    private int ID = 1;
     public Student()
     {
         materii=new ArrayList<Materie>();
     }
 
-    public Student(String nume, String prenume, int varsta, char sex)
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public Student(String nume, String prenume, int varsta, char sex, int ID)
     {
         super(nume, prenume, varsta, sex);
+        this.ID=ID;
         materii=new ArrayList<Materie>();
     }
 
@@ -71,6 +94,10 @@ class Student extends Persoana
     {
         materii.add(materie);
         return this;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public Materie get_materie(String denumire)

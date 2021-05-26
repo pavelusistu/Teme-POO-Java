@@ -55,6 +55,16 @@ public class CatalogService
             return new Student();
         }
 
+    public Student get_student(int ID)
+    {
+        for(Student s:studenti)
+        {
+            if (s.getID()==ID)
+                return s;
+        }
+        return new Student();
+    }
+
     public Profesor get_profesor(String nume)
     {
         for(Profesor p:profesori)

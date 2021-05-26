@@ -22,9 +22,10 @@ public class Cititor {
         BufferedReader csvReader = new BufferedReader(new FileReader(path));
         String row;
         if(path.contains("Student")) {
+            int i=1;
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split(",");
-                obiecte.add((T) new Student(data[0], data[1], Integer.parseInt(data[2]), data[3].charAt(0)));
+                obiecte.add((T) new Student(data[0], data[1], Integer.parseInt(data[2]), data[3].charAt(0), i++));
             }
             csvReader.close();
         }
