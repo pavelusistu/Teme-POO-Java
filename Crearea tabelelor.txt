@@ -1,0 +1,32 @@
+create table studenti
+(id_student int auto_increment PRIMARY KEY,
+id_grupa int,
+foreign key (id_grupa) references GRUPE(id_grupa),
+nume varchar(20) NOT NULL,
+prenume varchar(20) NOT NULL,
+varsta int(2) NOT NULL,
+sex varchar(1) NOT NULL);
+
+
+create table grupe
+(id_grupa int auto_increment PRIMARY KEY,
+an int(1) NOT NULL,
+serie int(1) NOT NULL,
+ordine int (1) NOT NULL);
+
+create table note
+(id_nota int auto_increment PRIMARY KEY,
+id_student int,
+foreign key (id_student) references STUDENTI(id_student),
+id_materie int,
+foreign key (id_materie) references MATERII(id_materie),
+nota int(2) NOT NULL,
+data date NOT NULL);
+
+create table materii
+(id_materie int auto_increment PRIMARY KEY ,
+denumire varchar(20),
+puncte_credit int(1));
+
+
+
