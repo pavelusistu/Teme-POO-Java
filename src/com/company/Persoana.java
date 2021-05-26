@@ -1,6 +1,8 @@
 package com.company;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Persoana implements Comparable<Persoana>
 {
@@ -93,9 +95,15 @@ class Student extends Persoana
 
     public float calculeaza_media_generala()
     {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
         float suma1=0;
         for (Materie m:materii)
+        {
             suma1+=m.calculeaza_media();
+        }
+        Scriitor.getInstance().write("A:\\tema\\src\\com\\company\\Scriitor" +
+                formatter.format(new Date(System.currentTimeMillis())) + ".csv",
+                "A fost calculata media generala a lui " +getNume() + "!");
         return (float)suma1/materii.size();
     }
 }
